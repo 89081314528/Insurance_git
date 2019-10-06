@@ -26,16 +26,16 @@ public class MainTwo {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i].getPatronymic().substring(employees[i].getPatronymic().length() - 3).equals("вна")) {
                 Employee oldEmployee = employees[i];
-                oldEmployee.setSex("ж");
+                oldEmployee.withDetermineSex("ж");
             } else
             if (employees[i].getPatronymic().substring(employees[i].getPatronymic().length() - 3).equals("вич")) {
                 Employee oldEmployee = employees[i];
-                oldEmployee.setSex("м");
+                oldEmployee.withDetermineSex("м");
             } else {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Введите пол " + employees[i].getName() + " " + employees[i].getSurname() + " " + employees[i].getPatronymic());
                 Employee oldEmployee = employees[i];
-                oldEmployee.setSex(scanner.next());
+                oldEmployee.withDetermineSex(scanner.next());
             }
             System.out.println(employees[i].getPatronymic());
             System.out.println(employees[i].getSex());

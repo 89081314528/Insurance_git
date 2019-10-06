@@ -25,8 +25,10 @@ public class Main {
             System.out.println(employees[i].getPatronymic());
         }
         for (int i = 0; i < 4; i++) {
-            if (employees[i].getPatronymic().substring(employees[i].getPatronymic().length() - 3).equals("вна")) {
-                Employee oldEmployee = employees[i];
+            Employee oldEmployee = employees[i];
+//            if (oldEmployee.getPatronymic().substring(oldEmployee.getPatronymic().length() - 3).equals("вна")) {
+            // то же другим способом с оператором endWith
+            if (oldEmployee.getPatronymic().endsWith("вна")) {
                 // изменить значение полей без использования сетеров
 //                Employee newEmployee = new Employee(
 //                        oldEmployee.getName(),
@@ -35,9 +37,10 @@ public class Main {
 //                        "ж");
 //                employees[i] = newEmployee;
                 // изменить значение полей с использованием сетеров
-                oldEmployee.setSex("ж");
+//                oldEmployee.setDetermineSex("ж");
+                employees[i] = oldEmployee.withDetermineSex("ж");
             }
-            System.out.println(employees[i].getSex());
+                System.out.println(employees[i].getSex());
         }
     }
 }
