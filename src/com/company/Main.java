@@ -3,6 +3,7 @@ package com.company;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,26 +21,30 @@ public class Main {
 //                "новичкова;ирина;витальевна;м",
 //                "леушина;оксана;вячеславовна;м"
 //        };
+        // создаем файл emloyes.csv в корневой директории проекта - Insurance sex (пкм new file)
         List<String> lines = Files.lines(new File("employes.csv").toPath())
                 .collect(Collectors.toList());
-        String[] csv = lines.toArray(new String[0]);
+//        String[] csv = lines.toArray(new String[0]);
+        List<String> csv = lines;
 
         //        преобразуем массив строк в массив сотрудников
-        Employee[] employees = new Employee[csv.length];
-        for (int i = 0; i < csv.length; i++) {
-            String line = csv[i];
+//        Employee[] employees = new Employee[csv.length];
+        List<Employee> employees = new ArrayList<>();
+
+        for (int i = 0; i < csv.size(); i++) {
+            String line = csv.get(i);
             String[] fio = line.split(";");
-            employees[i] = new Employee(fio[1], fio[0], fio[2], fio[3]);
+            employees.add(new Employee(fio[1], fio[0], fio[2], fio[3]));
         }
-        for (int i = 0; i < csv.length; i++) {
-            System.out.println(employees[i].getPatronymic());
+        for (int i = 0; i < csv.size(); i++) {
+            System.out.println(employees.get(i).getPatronymic());
         }
-        for (int i = 0; i < csv.length; i++) {
-            Employee oldEmployee = employees[i];
+        for (int i = 0; i < csv.size(); i++) {
+            Employee oldEmployee = employees.get(i);
             if (oldEmployee.getPatronymic().endsWith("вна")) {
-                employees[i] = oldEmployee.withDetermineSex("ж");
+                employees.set(i, oldEmployee.withDetermineSex("ж"));
             }
-                System.out.println(employees[i].getSex());
+                System.out.println(employees.get(i).getSex());
         }
     }
 }
