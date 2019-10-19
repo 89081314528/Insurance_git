@@ -44,7 +44,7 @@ public class Employee {
 //    public void setSex(String sex) {
 //        this.sex = sex;
 //    }
-    // принято использовать вот эти сеттеры
+    // круто использовать вот эти методы с сетерами
     public Employee withDetermineSex(String sex) {
         return new Employee(this.getName(), this.getSurname(), this.getPatronymic(), sex);
     }
