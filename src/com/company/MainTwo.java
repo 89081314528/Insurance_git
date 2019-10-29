@@ -7,7 +7,7 @@ public class MainTwo {
         String accountant = "новичкова;ирина;витальевна;ж";
         String[] fio = accountant.split(";");
         for (int i = 0; i < fio.length; i++) {
-//            System.out.println(fio[i]);
+            System.out.println(fio[i]);
         }
         String[] employeesCsv = new String[] {
                 "забиров;тимур;фаильевич; ",
@@ -24,19 +24,18 @@ public class MainTwo {
             employees[i] = new Employee(fioSex[0], fioSex[1], fioSex[2], fioSex[3]);
         }
         for (int i = 0; i < employees.length; i++) {
+            Employee oldEmployee = employees[i];
             if (employees[i].getPatronymic().substring(employees[i].getPatronymic().length() - 3).equals("вна")) {
-                Employee oldEmployee = employees[i];
-                oldEmployee.withDetermineSex("ж");
+                oldEmployee = oldEmployee.withDetermineSex("ж");
             } else
             if (employees[i].getPatronymic().substring(employees[i].getPatronymic().length() - 3).equals("вич")) {
-                Employee oldEmployee = employees[i];
-                oldEmployee.withDetermineSex("м");
+                oldEmployee = oldEmployee.withDetermineSex("м");
             } else {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Введите пол " + employees[i].getName() + " " + employees[i].getSurname() + " " + employees[i].getPatronymic());
-                Employee oldEmployee = employees[i];
-                oldEmployee.withDetermineSex(scanner.next());
+                oldEmployee = oldEmployee.withDetermineSex(scanner.next());
             }
+            employees[i] = oldEmployee;
             System.out.println(employees[i].getPatronymic());
             System.out.println(employees[i].getSex());
         }
